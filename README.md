@@ -36,92 +36,112 @@ project-root/
 └─ frontend/
 ```
 
-⚙️ Requisitos
-Node.js 18+
-MySQL
-npm
-📦 Instalación
-1. Clonar el repositorio
-git clone <url-del-repositorio>
-cd finance-system
-2. Backend
-cd backend
-npm install
+#Requisitos
 
-Crear archivo .env:
+- Node.js 18+
+- MySQL
+- npm
+- Instalación
+  
+# 1. Clonar el repositorio
 
-DATABASE_URL="mysql://usuario:password@localhost:3306/finance_db"
-PORT=3001
-3. Prisma
-npx prisma generate
-npx prisma migrate dev --name init
+- git clone <url-del-repositorio>
+- cd <nombre-del-proyecto>
 
-Si ya tienes base de datos:
+# 2. Configurar el backend
 
-npx prisma db push
-npx prisma generate
-4. Ejecutar backend
-npm run dev
+- cd backend
+- npm install
+- Crear el archivo .env en la carpeta backend/:
 
-📍 Backend:
-http://localhost:3001
+- DATABASE_URL="mysql://usuario:password@localhost:3306/finance_db"
+- PORT=3001
+  
+# 3. Preparar Prisma
 
-5. Frontend
-cd frontend
-npm install
-npm run dev
+- npx prisma generate
+- npx prisma migrate dev --name init
+- Si prefieres sincronizar directo con la base de datos existente:
 
-📍 Frontend:
-http://localhost:5173
+- npx prisma db push
+- npx prisma generate
+  
+# 4. Ejecutar el backend
 
-📌 Scripts
-Backend
-npm run dev
-Frontend
-npm run dev
-npm run build
-npm run preview
-📊 Funcionalidades
-👤 Clientes
-Crear clientes
-Listar clientes
-Relación con ingresos y gastos
-💰 Ingresos
-Crear ingresos por cliente
-Asignar categoría
-Visualización en dashboard
-💸 Gastos
-Crear gastos por cliente
-Asignar categoría
-Control de egresos
-📈 Dashboard
-Balance por cliente
-Total ingresos
-Total gastos
+- npm run dev
+- El backend queda disponible en:
+
+- http://localhost:3001
+  
+# 5. Configurar el frontend
+
+- En otra terminal:
+
+- cd frontend
+- npm install
+
+# 6. Ejecutar el frontend
+
+- npm run dev
+
+3 El frontend queda disponible en:
+
+- http://localhost:5173
+- Scripts
+  
+# Backend
+
+- npm run dev
+  
+# Frontend
+
+- npm run dev
+- npm run build
+- npm run preview
+  
+# Funcionalidades
+
+Autenticación
+Registro de usuario
+Inicio de sesión
+Persistencia de sesión en localStorage
+Dashboard
+Balance general
+Total de ingresos
+Total de gastos
 Gráfica mensual
-Comparación ingresos vs gastos
-🧾 Categorías
+Ingresos y gastos
+Crear registros desde modal
+Selección de categoría por tipo
+Notificaciones visuales al guardar
+Actualización automática de datos
+Categorías
 Crear categorías
 Editar categorías
 Eliminar categorías
-Separación por tipo (ingreso / gasto)
-📄 Reportes
-Resumen financiero por cliente
-Exportación a Excel (.xls)
-Datos mensuales
-🏗️ Arquitectura
-Backend
-Controllers
-Routes
-Prisma ORM
-Validación con Zod
-Frontend
-SPA con React
-Componentes reutilizables
-Hooks personalizados
-Servicios API
-🗄️ Base de datos
+Listado separado por:
+Gastos
+Ingresos
+Reportes
+Resumen financiero
+Descarga en Excel .xls
+Exportación a Excel
+Desde la sección de reportes se genera un archivo .xls con:
 
+Resumen financiero
+Datos mensuales
+Modelo de arquitectura
+Este proyecto no usa un MVC puro.
+
+Backend
+routes
+controllers
+Prisma como capa de acceso a datos
+Frontend
+SPA con componentes, hooks y contexto
+En la práctica, es una arquitectura por capas con frontend separado.
+
+Base de datos
 Entidades principales:
 
 User
@@ -129,16 +149,14 @@ Client
 Category
 Income
 Expense
-🚀 Mejoras futuras
-Login con JWT
-Roles de usuario
+Mejoras futuras
 Filtros por fecha
 Exportación a PDF
-Paginación de tablas
-Dashboard avanzado por categoría
-Gráficas comparativas por cliente
-👨‍💻 Autor
+Paginación en tablas
+Roles de usuario
+Gráficas por categoría
+Más hojas en el Excel exportado
+Autor
+Sistema desarrollado para gestión financiera personalizada por usuario.
 
 Proyecto académico de gestión financiera por cliente con visualización de datos.
-
-
