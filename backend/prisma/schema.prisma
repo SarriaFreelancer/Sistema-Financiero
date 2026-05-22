@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  clientId  Int      @unique
+  client    Client   @relation(fields: [clientId], references: [id])
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type      String
+  createdAt DateTime @default(now())
+
+  // RelaciÃ³n con el cliente para que sus categorÃ­as sean privadas
+  clientId  Int
+  client    Client   @relation(fields: [clientId], references: [id])
+
+  expenses  Expense[]
+  incomes   Income[]
+}
+
+model Client {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String
+  createdAt DateTime @default(now())
+  user      User?
+
+  expenses  Expense[]
+  incomes   Income[]
+  categories Category[]
+}
+
+model Expense {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  amount      Float
+  createdAt   DateTime  @default(now())
+
+  categoryId  Int
+  category    Category  @relation(fields: [categoryId], references: [id])
+
+  clientId    Int
+  client      Client    @relation(fields: [clientId], references: [id])
+}
+
+model Income {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  amount      Float
+  createdAt   DateTime  @default(now())
+
+  categoryId  Int
+  category    Category  @relation(fields: [categoryId], references: [id])
+
+  clientId    Int
+  client      Client    @relation(fields: [clientId], references: [id])
+}
